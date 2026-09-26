@@ -131,10 +131,12 @@ export const ACTION_LABELS: Record<ActivityAction, string> = {
   DELETED: '删除',
   RESTORED: '恢复',
   STATUS_CHANGED: '状态变化',
-  COMPLETED: '读完'
+  COMPLETED: '读完',
+  PASSWORD_CHANGED: '修改密码'
 };
 
 export const ENTITY_LABELS: Record<ActivityEntityType, string> = {
+  USER: '账号',
   BOOK: '书目',
   DOG_EAR: '折角',
   ANNOTATION: '批注',

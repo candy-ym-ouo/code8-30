@@ -33,6 +33,7 @@ enum MoodTag {
 }
 
 enum ActivityEntityType {
+  USER
   BOOK
   DOG_EAR
   ANNOTATION
@@ -47,6 +48,7 @@ enum ActivityAction {
   RESTORED
   STATUS_CHANGED
   COMPLETED
+  PASSWORD_CHANGED
 }
 
 model User {

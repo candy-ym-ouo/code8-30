@@ -68,6 +68,7 @@ function filter(): void {
 
 function summary(event: TimelineEvent): string {
   const payload = event.payload;
+  if (event.action === 'PASSWORD_CHANGED') return '其他设备的登录状态已失效';
   if (typeof payload.pageNumber === 'number') return `第 ${payload.pageNumber} 页`;
   if (typeof payload.startPage === 'number') {
     return `第 ${payload.startPage}–${typeof payload.endPage === 'number' ? payload.endPage : payload.startPage} 页`;
@@ -140,6 +141,7 @@ onMounted(async () => {
           </div>
           <p>
             <RouterLink v-if="event.bookId" :to="`/books/${event.bookId}`">{{ event.bookTitle }}</RouterLink>
+            <span v-else-if="event.entityType === 'USER'">账号安全</span>
             <span v-else>{{ event.bookTitle }}</span>
             <span v-if="summary(event)"> · {{ summary(event) }}</span>
           </p>
