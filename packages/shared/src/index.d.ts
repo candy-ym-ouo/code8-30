@@ -1,8 +1,8 @@
 export type BookStatus = 'TO_READ' | 'READING' | 'READ' | 'PAUSED' | 'ABANDONED';
 export type MoodTag = 'MOVED' | 'CALM' | 'JOYFUL' | 'SAD' | 'ANGRY' | 'CONFUSED' | 'RELIEVED' | 'EMPTY' | 'CHANGED';
 export type TraceType = 'DOG_EAR' | 'ANNOTATION' | 'REREAD_MARK';
-export type ActivityAction = 'CREATED' | 'UPDATED' | 'DELETED' | 'RESTORED' | 'STATUS_CHANGED' | 'COMPLETED';
-export type ActivityEntityType = 'BOOK' | 'DOG_EAR' | 'ANNOTATION' | 'REREAD_MARK' | 'COMPLETION_REFLECTION';
+export type ActivityAction = 'CREATED' | 'UPDATED' | 'DELETED' | 'RESTORED' | 'STATUS_CHANGED' | 'COMPLETED' | 'PASSWORD_CHANGED';
+export type ActivityEntityType = 'USER' | 'BOOK' | 'DOG_EAR' | 'ANNOTATION' | 'REREAD_MARK' | 'COMPLETION_REFLECTION';
 export declare const BOOK_STATUSES: BookStatus[];
 export declare const MOOD_TAGS: MoodTag[];
 export declare const TRACE_TYPES: TraceType[];

@@ -78,6 +78,13 @@ function summary(event: TimelineEvent): string {
   if (typeof payload.previousStatus === 'string' && typeof payload.nextStatus === 'string') {
     return `${payload.previousStatus} → ${payload.nextStatus}`;
   }
+  if (
+    event.action === 'PASSWORD_CHANGED' &&
+    typeof payload.fromVersion === 'number' &&
+    typeof payload.toVersion === 'number'
+  ) {
+    return `凭证第 ${payload.fromVersion} 代 → 第 ${payload.toVersion} 代`;
+  }
   if (typeof payload.summary === 'string') return payload.summary;
   return '';
 }

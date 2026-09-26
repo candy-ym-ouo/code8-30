@@ -17,6 +17,11 @@ const error = ref('');
 const success = ref('');
 const saving = ref(false);
 
+// 凭证已在其他设备被更新：本设备会话已经失效，清理本地登录态并要求重新登录。
+function isStaleCredential(caught: unknown): boolean {
+  return caught instanceof ApiError && (caught.code === 'CREDENTIALS_CHANGED' || caught.status === 401);
+}
+
 async function changePassword(): Promise<void> {
   error.value = '';
   success.value = '';
@@ -36,6 +41,11 @@ async function changePassword(): Promise<void> {
     confirmPassword.value = '';
     success.value = '密码已修改，其他设备上的登录状态已失效';
   } catch (caught) {
+    if (isStaleCredential(caught)) {
+      auth.user = null;
+      await router.push({ path: '/login', query: { reason: 'credentials_changed' } });
+      return;
+    }
     error.value = caught instanceof ApiError ? caught.message : '密码修改失败';
   } finally {
     saving.value = false;
@@ -68,6 +78,11 @@ async function deleteAccount(): Promise<void> {
     auth.user = null;
     await router.push('/login');
   } catch (caught) {
+    if (isStaleCredential(caught)) {
+      auth.user = null;
+      await router.push({ path: '/login', query: { reason: 'credentials_changed' } });
+      return;
+    }
     error.value = caught instanceof ApiError ? caught.message : '注销失败';
   }
 }

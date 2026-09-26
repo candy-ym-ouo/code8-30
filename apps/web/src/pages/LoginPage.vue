@@ -52,6 +52,9 @@ async function submit(): Promise<void> {
     </section>
     <form class="card auth-card" @submit.prevent="submit">
       <h2>登录</h2>
+      <div v-if="route.query.reason === 'credentials_changed'" class="success-notice" role="status">
+        密码已在其他设备修改，请使用最新密码重新登录。
+      </div>
       <ErrorNotice :message="error" :fields="fields" />
       <label>
         邮箱
